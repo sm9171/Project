@@ -11,8 +11,10 @@ public class Rectangle extends Point{
 		this.width=width;
 		this.height=height;
 	}
+	@Override
 	public void draw(){
-		System.out.println("면적 : "+Math.round(width*height*10)/10.0);
-		System.out.println("둘레 : "+Math.round(2*(width+height)*10)/10.0);
+		super.draw();
+		System.out.println("사각형 면적 : "+Math.round(width*height*10)/10.0);
+		System.out.println("사각형 둘레 : "+Math.round(2*(width+height)*10)/10.0);
 	}
 }

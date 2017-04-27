@@ -33,6 +33,7 @@ public class Rectangle extends Shape{
 		setArea(width*height);
 		setPerimeter((width+height)*2);
 	}
+
 	@Override
 	public void information(){
 		super.information();

@@ -56,7 +56,8 @@ public class TestInheritance {
 	}
 	//java.lang.Object 는 모든 클래스들의 부모이다.
 	//Object 가 제공하는 메소드는 사용 가능하다.
-	public void test3(){
+	/*public void test3(){
+		//추상클래스는 객체 생성 못 함
 		Shape s= new Shape("도형");
 		Shape s2= s; //주소 복사
 		
@@ -73,8 +74,8 @@ public class TestInheritance {
 		System.out.println("st1 : "+st1);
 		System.out.println("값이 같은지? " + st1.equals("apple"));
 		
-	}
-	public void test4(){
+	}*/
+/*	public void test4(){
 		Shape s = new Shape("도형");
 		Circle cir = new Circle("원", 12.3);
 		Rectangle rec = new Rectangle("사각형",10,20);
@@ -82,9 +83,9 @@ public class TestInheritance {
 		System.out.println("s : " + s);
 		System.out.println("cir : "+ cir);
 		System.out.println("rec : "+ rec);
-	}
+	}*/
 	//상속관계에 있는 클래스일 때는 부모 레퍼런스가 후손 객체의 주소를 받을 수 있음
-	public void test5(){
+	/*public void test5(){
 		Shape s= new Circle();
 		System.out.println("s : "+ s);
 		
@@ -101,21 +102,22 @@ public class TestInheritance {
 		System.out.println("s : "+ s);
 		Object obj = s;
 		System.out.println("obj : " +obj);
+	
 		obj= new Shape();
 		obj= new Circle();
 		obj= new String();
 		obj= new java.util.Date();
 		System.out.println("obj : "+obj);
-	}
+	}*/
 	//overriding equals() test
-	public void test6(){
+/*	public void test6(){
 		Shape s1 =new Shape("도형1");
 		Shape s2 =new Shape("shape");
 		if(s1.equals(s2))
 			System.out.println("두 객체안의 모든 필드값이 같다");
 		else
 			System.out.println("두 객체안의 모든 필드값이 다르다");
-	}
+	}*/
 	//equals() test
 	public void test7(){
 		Circle c1 =new Circle("원", 10.5);
@@ -124,7 +126,7 @@ public class TestInheritance {
 		System.out.println("값들이 모두 같은지? "+c1.equals(c2));
 	}
 	//clone() test
-	public void test8(){
+/*	public void test8(){
 		Circle c1 = new Circle("circle",23.5);
 		Circle copyC1 = (Circle)c1.clone();
 		
@@ -138,5 +140,5 @@ public class TestInheritance {
 		TestInheritance tin =new TestInheritance();
 		tin.test8();
 	}
-
+*/
 }

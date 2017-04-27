@@ -24,6 +24,8 @@ public class Circle extends Shape{
 	public double getRadius(){
 		return radius;
 	}
+	//추상메소드를 상속받은 후손클래스는 반드시 부모의 추상메소드를 완성시켜야 함
+	//메소드 사용의 강제화가 목적임.
 	@Override
 	public void calculator(){
 		setArea(Math.PI * Math.pow(radius, 2));
@@ -46,7 +48,7 @@ public class Circle extends Shape{
 			result =true;
 		return result;
 	}
-	@Override
+	/*@Override
 		public Object clone(){
 			Circle c= (Circle)super.clone();
 			c.setArea(this.getArea());
@@ -54,5 +56,5 @@ public class Circle extends Shape{
 			c.setPerimeter(this.getPerimeter());
 			c.radius=this.radius;
 			return c;
-}
+}*/
 }

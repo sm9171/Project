@@ -9,11 +9,11 @@ public class Book implements Serializable{
 	private String title;
 	private String author;
 	private int price;
-	private String dates;
+	private Calendar dates;
 	private double discountRate;
 	public Book(){}
 	
-	public Book(String title, String author, int price, String dates, double discountRate) {
+	public Book(String title, String author, int price, Calendar dates, double discountRate) {
 		this.title = title;
 		this.author = author;
 		this.price = price;
@@ -30,7 +30,7 @@ public class Book implements Serializable{
 	public int getPrice() {
 		return price;
 	}
-	public String getDates() {
+	public Calendar getDates() {
 		return dates;
 	}
 	public double getDiscountRate() {
@@ -45,7 +45,7 @@ public class Book implements Serializable{
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public void setDates(String dates) {
+	public void setDates(Calendar dates) {
 		this.dates = dates;
 	}
 	public void setDiscountRate(double discountRate) {
@@ -56,13 +56,8 @@ public class Book implements Serializable{
 	public String toString() {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("YYYY'³â' MM'¿ù' dd'ÀÏ'");
-		try {
-			cal.setTime(sdf.parse(dates));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		return title + ", " + author + ", " + price + ", " + sdf.format(dates) + ", " + discountRate;
+		
+		return title + ", " + author + ", " + price + ", " + sdf.format(dates.getTime()) + ", " + discountRate;
 	}
 	
 	

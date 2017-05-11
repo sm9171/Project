@@ -7,33 +7,27 @@ import java.util.*;
 public class BookManager {
 	Scanner sc = new Scanner(System.in);
 
-	public BookManager(){}
+	public BookManager(){super();}
 	public void fileSave() {
+		Book[] books = new Book[]{
+				new Book("자바의정석", "김을동", 30000, new GregorianCalendar(1991, 1, 1), 0.5),
+				new Book("하악하악", "문재인", 45000, new GregorianCalendar(1992, 2, 2), 0.2),
+				new Book("물은 답을 알고있다", "아이작", 30000, new GregorianCalendar(1993, 3, 3), 0.1),
+				new Book("열혈강의", "김삿갓", 15000, new GregorianCalendar(1994, 4, 4), 0.3),
+				new Book("빅피처", "데이비드", 10000, new GregorianCalendar(1995, 5, 5), 0.05)};
+		
 		try(ObjectOutputStream objOut=  new ObjectOutputStream(new FileOutputStream("books.dat"))) {
-			Book [] book=new Book[5];
-			Calendar c=new GregorianCalendar();
-			for(int i = 0;i<book.length;i++){
-			System.out.print("책제목 : ");
-			String title =sc.next();
-			System.out.print("저자명명 : ");
-			String author =sc.next();
-			System.out.print("가격 : ");
-			int price =sc.nextInt();
-			System.out.print("출판년 : ");
-			int year = sc.nextInt();
-			System.out.print("출판월 : ");
-			int month = sc.nextInt();
-			System.out.print("출판일 : ");
-			int date = sc.nextInt();
-			System.out.print("할인율 : ");
-			double discountRate =sc.nextDouble();
-			c.set(year,month,date);
-			book[i]=new Book(title,author,price,c.getInstance(),discountRate);
-			objOut.writeObject(book[i]);
-			}
+			
+			
+		
+			
+
+			for(Book b : books)
+				objOut.writeObject(b);
+			
 			System.out.println("Book.dat에 저장완료");
 			
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

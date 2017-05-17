@@ -4,33 +4,54 @@ import java.util.Scanner;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 public class CarGame extends JFrame {
 	// 초본
-	private JLabel label1;
-	private JLabel label2;
-	private JLabel label3;
+	private JLabel label1, label2,label3;
 	int x1 = 100, x2 = 100, x3 = 100;
 
 	class MyThread extends Thread {
-		Scanner sc=new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
+
 		public void run() {
-			for (int i = 0; i < 120; i++) {
+			int count= 0;
+			int card=0;
+		
+			do {
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				Random b=new Random();
-				char c=(char)(97+b.nextInt(25));
-				System.out.println(c);
-				char a=sc.nextLine().charAt(0);
-				if(a==c){
-					x1 += (int) (Math.random() * 10);
-					label1.setBounds(x1, 0, 100, 100);
-				}
-			
 				
-			}
+				Random b = new Random();
+				char c = (char) (97 + b.nextInt(25));
+				System.out.println(c);
+				char a = sc.nextLine().charAt(0);
+				if (a == c) {
+					x1 += 50;
+					System.out.println("한칸 앞으로 이동!");
+					label1.setBounds(x1, 0, 100, 100);
+					count++;
+				} else {
+					label1.setBounds(x1, 0, 100, 100);
+					card++;
+				}
+				if (count == 10) {
+					System.out.println("승리하였습니다!!");
+					break;
+				}
+				if(card==1){
+					System.out.println("틀린 글자를 입력 하였습니다 ----- 경고!");
+				}else if(card==2){
+					System.out.println("틀린 글자를 입력 하였습니다 ----- 옐로우 카드!");
+				}else if(card==3){
+					System.out.println("틀린 글자를 입력 하였습니다 ----- 레드카드!");
+					System.out.println("게임이 종료되었습니다.");
+					break;
+				}
+				
+			} while (true);
 		}
 	}
 

@@ -11,7 +11,7 @@ import java.awt.*;
 public class game extends JFrame {
 
 	// 자동차 게임
-	private JLabel label1, label2, label3,label4;	//플레이어1~4
+	private JLabel background,label1, label2, label3,label4;	//플레이어1~4
 	int x1 = 100, x2 = 100, x3 = 100, x4 = 100;
 
 	class MyThread extends Thread {
@@ -85,13 +85,14 @@ public class game extends JFrame {
 
 		// 자동차게임
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(Color.CYAN);
+	
 	
 	
 		panel_1.setBounds(37, 15, 561, 258);
 		panel_1.setLayout(null);
 				
-		
+		background=new JLabel();
+		background.setIcon(new ImageIcon("다운로드.gif"));
 		label1 = new JLabel();
 		label1.setIcon(new ImageIcon());
 		label2 = new JLabel();
@@ -100,10 +101,13 @@ public class game extends JFrame {
 		label3.setIcon(new ImageIcon("피카츄.gif"));
 		label4 = new JLabel();
 		label4.setIcon(new ImageIcon("이상해씨.gif"));
+		
 		panel_1.add(label1);
 		panel_1.add(label2);
 		panel_1.add(label3);
 		panel_1.add(label4);
+		panel_1.add(background);
+		background.setBounds(0, 0, 561, 258);
 		label1.setBounds(100, 0, 100, 100);
 		label2.setBounds(100, 50, 100, 100);
 		label3.setBounds(100, 100, 100, 100);

@@ -61,11 +61,11 @@ public class CarGame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(null);
 		label1 = new JLabel();
-		label1.setIcon(new ImageIcon("car1.gif"));
+		label1.setIcon(new ImageIcon("ÆÄÀÌ¸®.gif"));
 		label2 = new JLabel();
-		label2.setIcon(new ImageIcon("car2.gif"));
+		label2.setIcon(new ImageIcon("²¿ºÎ±â.gif"));
 		label3 = new JLabel();
-		label3.setIcon(new ImageIcon("car3.gif"));
+		label3.setIcon(new ImageIcon("ÇÇÄ«Ãò.gif"));
 		add(label1);
 		add(label2);
 		add(label3);

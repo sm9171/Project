@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 public class CarGame extends JFrame {
 	// 초본
 	private JLabel label1, label2,label3;
-	int x1 = 100, x2 = 100, x3 = 100;
+	int x1 = 100, x2 = 100, x3 = 100, x4=100;
 
 	class MyThread extends Thread {
 		Scanner sc = new Scanner(System.in);
@@ -28,6 +28,12 @@ public class CarGame extends JFrame {
 				char c = (char) (97 + b.nextInt(25));
 				System.out.println(c);
 				char a = sc.nextLine().charAt(0);
+				x2 += (int) (Math.random() * 10);
+				label2.setBounds(x2, 50, 100, 100);
+				x3 += (int) (Math.random() * 10);
+				label3.setBounds(x3, 100, 100, 100);
+				x4 += (int) (Math.random() * 10);
+				label3.setBounds(x3, 100, 100, 100);
 				if (a == c) {
 					x1 += 50;
 					System.out.println("한칸 앞으로 이동!");

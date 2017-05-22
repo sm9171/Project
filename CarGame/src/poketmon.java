@@ -19,7 +19,7 @@ public class poketmon extends JFrame {
 	// 자동차 게임
 	private JLabel background, label1, label2, label3, label4; // 플레이어1~4
 	private int x1 = 100, x2 = 100, x3 = 100, x4 = 100;
-	private JLabel textArea;
+	private JLabel textArea,textArea2;
 	double second = 0;
 	
 
@@ -48,32 +48,37 @@ public class poketmon extends JFrame {
 
 	class MyThread extends Thread {
 		Scanner sc = new Scanner(System.in);
-
+		
+		
 		
 		public void run() {
 			int count = 0;
-
+			poketmon p=new poketmon();
+			Random b = new Random();
 			do {
-				Random b = new Random();
+				
 				char c = (char) (97 + b.nextInt(25));
-				System.out.println(c);
-				char a = sc.next().charAt(0);
-				textArea.setText(c+"");
+				textArea2.setText("입력할 값 : "+c);
+				
+				
 				
 				String result="";
-				if (a == c) {
+				if (p.s == c) {
 					x1 += 10;
 					result="한칸 앞으로 이동!";
-					System.out.println(result);
 					label1.setBounds(x1, 0, 100, 100);
 					count++;
 				}
+				if(p.s!=c){
+					result="잘못된 값을 입력하였습니다.";
+				}
 				if (count == 47) {
 					result="게임이 종료되었습니다.";
-					System.out.println(result);
 					System.out.println(second);
+					textArea.setText(result+"    총 "+second+"초 걸렸습니다.");
 					break;
 				}
+				textArea.setText(result);
 
 			} while (true);
 		}
@@ -84,6 +89,7 @@ public class poketmon extends JFrame {
 	private JTextField selected;
 	private JPanel panel;
 	private JList list;
+	private char s;
 	private String[] cities = { "피카츄", "파이리", "꼬부기", "이상해씨" };
 	private int gameStart = 0;
 
@@ -160,14 +166,24 @@ public class poketmon extends JFrame {
 		btnNewButton.setBounds(37, 307, 149, 47);
 
 		panel.add(btnNewButton);
-		
+		textArea2 = new JLabel();
+		textArea2.setFont(new Font("궁서", Font.BOLD, 33));
+		textArea2.setBounds(223, 307, 280, 47);
+		panel.add(textArea2);
 		textArea = new JLabel();
-		textArea.setBounds(37, 368, 561, 78);
+		textArea.setBounds(170, 370, 280, 29);
 		panel.add(textArea);
 		
 		
 		
 		textField = new JTextField();
+		textField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Scanner sc=new Scanner(System.in);
+				s= sc.next().charAt(0);
+				textField.setText("");
+			}
+		});
 		textField.setBounds(80, 456, 519, 21);
 		panel.add(textField);
 		textField.setColumns(10);

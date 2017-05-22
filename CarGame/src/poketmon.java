@@ -16,7 +16,7 @@ import java.awt.event.KeyEvent;
 
 public class poketmon extends JFrame {
 
-	// 자동차 게임
+
 	private JLabel background, label1, label2, label3, label4; // 플레이어1~4
 	private int x1 = 100, x2 = 100, x3 = 100, x4 = 100;
 	private JLabel textArea,textArea2;
@@ -24,7 +24,7 @@ public class poketmon extends JFrame {
 	
 
 
-	
+//포켓몬 컴퓨터 인터페이스
 	class ComThread extends Thread {
 		public void run() {
 			do {
@@ -45,31 +45,30 @@ public class poketmon extends JFrame {
 	}
 	
 
-
+//포켓몬 유저 인터페이스
 	class MyThread extends Thread {
 		Scanner sc = new Scanner(System.in);
 		
 		
-		
 		public void run() {
 			int count = 0;
-			poketmon p=new poketmon();
+			
 			Random b = new Random();
 			do {
 				
 				char c = (char) (97 + b.nextInt(25));
 				textArea2.setText("입력할 값 : "+c);
-				
+				char a=sc.next().charAt(0);
 				
 				
 				String result="";
-				if (p.s == c) {
+				if (a == c) {
 					x1 += 10;
 					result="한칸 앞으로 이동!";
 					label1.setBounds(x1, 0, 100, 100);
 					count++;
 				}
-				if(p.s!=c){
+				if(a!=c){
 					result="잘못된 값을 입력하였습니다.";
 				}
 				if (count == 47) {
@@ -122,7 +121,7 @@ public class poketmon extends JFrame {
 		// 리스트의 선택 모드를 단일 선택 모드로 변경
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-		// 자동차게임
+		//포켓몬 모델
 		JPanel panel_1 = new JPanel();
 
 		panel_1.setBounds(37, 15, 561, 258);
@@ -159,13 +158,13 @@ public class poketmon extends JFrame {
 				(new ComThread()).start();
 				(new MyThread()).start();
 				
-				
-
 			}
 		});
 		btnNewButton.setBounds(37, 307, 149, 47);
-
 		panel.add(btnNewButton);
+		
+		
+		
 		textArea2 = new JLabel();
 		textArea2.setFont(new Font("궁서", Font.BOLD, 33));
 		textArea2.setBounds(223, 307, 280, 47);
@@ -177,13 +176,6 @@ public class poketmon extends JFrame {
 		
 		
 		textField = new JTextField();
-		textField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Scanner sc=new Scanner(System.in);
-				s= sc.next().charAt(0);
-				textField.setText("");
-			}
-		});
 		textField.setBounds(80, 456, 519, 21);
 		panel.add(textField);
 		textField.setColumns(10);
@@ -204,15 +196,12 @@ public class poketmon extends JFrame {
 
 	}
 
+// 리스트
 	private class ListListener implements ListSelectionListener {
 
 		public void valueChanged(ListSelectionEvent e) {
-			// 선택된 도시를 얻는다.
 			String selection = (String) list.getSelectedValue();
-
-			// 선택된 도시를 텍스트 필드에 기록한다.
 			selected.setText(selection);
-
 			ImageIcon icon = new ImageIcon(selection + ".gif");// 선택된 도시의 이미지 로딩
 			label1.setIcon(icon);// 이미지 넣기
 			imgLabel.setIcon(icon);

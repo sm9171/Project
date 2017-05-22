@@ -7,12 +7,8 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.InputMethodListener;
-import java.awt.event.InputMethodEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
 
 public class poketmon extends JFrame {
 
@@ -20,10 +16,17 @@ public class poketmon extends JFrame {
 	private JLabel background, label1, label2, label3, label4; // 플레이어1~4
 	private int x1 = 100, x2 = 100, x3 = 100, x4 = 100;
 	private JLabel textArea,textArea2;
+	private JTextField textField;
 	double second = 0;
+	private char a;
+	private JLabel label;
+	private JTextField selected;
+	private JPanel panel;
+	private JList list;
+	private String[] cities = { "피카츄", "파이리", "꼬부기", "이상해씨" };
+	private int gameStart = 0;
+
 	
-
-
 //포켓몬 컴퓨터 인터페이스
 	class ComThread extends Thread {
 		public void run() {
@@ -51,49 +54,46 @@ public class poketmon extends JFrame {
 		
 		
 		public void run() {
-			int count = 0;
-			
+			int count = 0;			
 			Random b = new Random();
 			do {
+				try {
+					char c = (char) (97 + b.nextInt(25));
+					textArea2.setText("입력할 값 : "+c);
+					char a=sc.next().charAt(0);
+					
+					
+					String result="";
+					if (a == c) {
+						x1 += 10;
+						result="한칸 앞으로 이동!";
+						label1.setBounds(x1, 0, 100, 100);
+						count++;
+					}
+					if(a!=c){
+						result="잘못된 값을 입력하였습니다.";
+					}
+					if (count == 47) {
+						result="게임이 종료되었습니다.";
+						System.out.println(second);
+						textArea.setText(result+"    총 "+second+"초 걸렸습니다.");
+						break;
+					}
+					textArea.setText(result);
 				
-				char c = (char) (97 + b.nextInt(25));
-				textArea2.setText("입력할 값 : "+c);
-				char a=sc.next().charAt(0);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
 				
-				
-				String result="";
-				if (a == c) {
-					x1 += 10;
-					result="한칸 앞으로 이동!";
-					label1.setBounds(x1, 0, 100, 100);
-					count++;
-				}
-				if(a!=c){
-					result="잘못된 값을 입력하였습니다.";
-				}
-				if (count == 47) {
-					result="게임이 종료되었습니다.";
-					System.out.println(second);
-					textArea.setText(result+"    총 "+second+"초 걸렸습니다.");
-					break;
-				}
-				textArea.setText(result);
 
 			} while (true);
 		}
 	}
 
 	// 포켓몬 레이아웃
-	private JLabel label;
-	private JTextField selected;
-	private JPanel panel;
-	private JList list;
-	private char s;
-	private String[] cities = { "피카츄", "파이리", "꼬부기", "이상해씨" };
-	private int gameStart = 0;
+	
 
 	JLabel imgLabel;
-	private JTextField textField;
 
 	public poketmon() {
 		setTitle("포켓몬 레이싱");
@@ -113,7 +113,7 @@ public class poketmon extends JFrame {
 		panel.add(selected);
 		getContentPane().add(panel, BorderLayout.CENTER);
 		list = new JList(cities);
-		list.setBounds(620, 370, 76, 94);
+		list.setBounds(620, 370, 76, 87);
 		panel.add(list);
 		// 리스트에 경계선을 설정한다.
 		list.setBorder(BorderFactory.createLineBorder(Color.black, 1));
@@ -173,9 +173,15 @@ public class poketmon extends JFrame {
 		textArea.setBounds(170, 370, 280, 29);
 		panel.add(textArea);
 		
-		
-		
+		Scanner sc =new Scanner(System.in);
 		textField = new JTextField();
+		textField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField.getText().charAt(0);
+				textField.setText("");
+			}
+		});
+		
 		textField.setBounds(80, 456, 519, 21);
 		panel.add(textField);
 		textField.setColumns(10);

@@ -18,14 +18,14 @@ public class poketmon extends JFrame {
 	private JLabel textArea,textArea2;
 	private JTextField textField;
 	double second = 0;
-	private char a;
+
 	private JLabel label;
 	private JTextField selected;
 	private JPanel panel;
 	private JList list;
 	private String[] cities = { "피카츄", "파이리", "꼬부기", "이상해씨" };
 	private int gameStart = 0;
-
+	
 	
 //포켓몬 컴퓨터 인터페이스
 	class ComThread extends Thread {
@@ -53,25 +53,29 @@ public class poketmon extends JFrame {
 		Scanner sc = new Scanner(System.in);
 		
 		
-		public void run() {
-			int count = 0;			
+		public void run(String a) {
+			int count = 0;
+			
 			Random b = new Random();
 			do {
+			
 				try {
 					char c = (char) (97 + b.nextInt(25));
 					textArea2.setText("입력할 값 : "+c);
-					char a=sc.next().charAt(0);
+					
 					
 					
 					String result="";
-					if (a == c) {
+					if (a.charAt(0)==c ) {
 						x1 += 10;
 						result="한칸 앞으로 이동!";
 						label1.setBounds(x1, 0, 100, 100);
 						count++;
+						return;
 					}
-					if(a!=c){
+					if(a.charAt(0)!=c){
 						result="잘못된 값을 입력하였습니다.";
+						return;
 					}
 					if (count == 47) {
 						result="게임이 종료되었습니다.";
@@ -150,22 +154,8 @@ public class poketmon extends JFrame {
 	
 		panel.add(panel_1);
 
-		JButton btnNewButton = new JButton("시작!");
-		btnNewButton.setFont(new Font("굴림", Font.BOLD, 33));
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				(new ComThread()).start();
-				(new MyThread()).start();
-				
-			}
-		});
-		btnNewButton.setBounds(37, 307, 149, 47);
-		panel.add(btnNewButton);
-		
-		
-		
-		textArea2 = new JLabel();
+
+		textArea2 = new JLabel(); 
 		textArea2.setFont(new Font("궁서", Font.BOLD, 33));
 		textArea2.setBounds(223, 307, 280, 47);
 		panel.add(textArea2);
@@ -173,11 +163,11 @@ public class poketmon extends JFrame {
 		textArea.setBounds(170, 370, 280, 29);
 		panel.add(textArea);
 		
-		Scanner sc =new Scanner(System.in);
+		MyThread th=new MyThread();
 		textField = new JTextField();
 		textField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField.getText().charAt(0);
+				th.run(textField.getText());
 				textField.setText("");
 			}
 		});
@@ -195,10 +185,27 @@ public class poketmon extends JFrame {
 		list.addListSelectionListener(new ListListener());
 		setVisible(true);
 
-		imgLabel = new JLabel();// 그림 넣을 라벨 생성
+		imgLabel = new JLabel(); // 그림 넣을 라벨 생성
 		imgLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		imgLabel.setVerticalAlignment(SwingConstants.BOTTOM);
 		getContentPane().add(imgLabel, BorderLayout.SOUTH);
+		
+		
+		JButton btnNewButton = new JButton("시작!");
+		btnNewButton.setFont(new Font("굴림", Font.BOLD, 33));
+		btnNewButton.setForeground(new Color(0, 0, 0));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				(new ComThread()).start();
+				(new MyThread()).start();
+				
+			}
+		});
+		btnNewButton.setBounds(37, 307, 149, 47);
+		panel.add(btnNewButton);
+		
+		
+		
 
 	}
 

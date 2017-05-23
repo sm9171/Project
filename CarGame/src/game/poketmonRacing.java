@@ -106,7 +106,7 @@ public class poketmonRacing implements ActionListener {
 
 			while (i < 10) {
 				inputField.addKeyListener(this);
-				
+				System.out.println(i);
 				if (count == 10) {
 					charTextField.setText("³¡±îÁö µµÂøÇÏ¼Ì½À´Ï´Ù.");
 					break;

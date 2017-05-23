@@ -7,6 +7,7 @@
 /Client.class
 /poketmon$2.class
 /poketmon$1MyThread.class
+<<<<<<< HEAD
 /race$1.class
 /race$ComThread.class
 /race$ListListener.class
@@ -18,3 +19,9 @@
 /Main.class
 /InputListener.class
 /poketmon$InputListener.class
+=======
+/poketmon$MyThread$1.class
+/ComThread.class
+/MyThread$ListListener.class
+/MyThread.class
+>>>>>>> branch 'master' of https://github.com/sm9171/project.git

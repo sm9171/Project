@@ -17,15 +17,18 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class poketmonRacing implements ActionListener, KeyListener {
+public class poketmonRacing implements ActionListener {
 
 	private JFrame frame;
 	private JTextField inputField;
 	private String[] unit = { "ÇÇÄ«Ãò", "ÆÄÀÌ¸®", "²¿ºÎ±â", "ÀÌ»óÇØ¾¾" };
 	private JTextField charTextField;
-	private String input;
+	private String input = null;
 	private int x1 = 100;
 	private JLabel label1;
+	char chQuestion;
+	int count = 0;
+	Random r = new Random();
 
 	/**
 	 * Launch the application.
@@ -74,8 +77,6 @@ public class poketmonRacing implements ActionListener, KeyListener {
 		frame.getContentPane().add(btnStart);
 		
 		btnStart.addActionListener(this);
-		
-		
 
 		inputField = new JTextField();
 		inputField.setBounds(30, 324, 148, 25);
@@ -95,51 +96,66 @@ public class poketmonRacing implements ActionListener, KeyListener {
 		charTextField.setColumns(10);
 	}
 
-	public void race() {
-		Random r = new Random();
-		int i = 0, count = 0;
-		char chQuestion;
-		while (true) {
-			chQuestion = (char) (97 + r.nextInt(25));
-			charTextField.setText(chQuestion + "");
-			inputField.addKeyListener(this);
+	class userThread extends Thread implements KeyListener {
 
+		public void run(int j) {
 			
+			chQuestion = (char)j;
+			charTextField.setText(chQuestion + "");
+			int i = 0;
 
-			if (count == 10){
+			while (i < 10) {
+				inputField.addKeyListener(this);
+				
+				if (count == 10) {
+					charTextField.setText("³¡±îÁö µµÂøÇÏ¼Ì½À´Ï´Ù.");
+					break;
+				}
+					
+
 				i++;
-				charTextField.setText("³¡±îÁö µµÂøÇÏ¼Ì½À´Ï´Ù.");
-				break;
+
+			}
+		}
+
+		@Override
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+
+			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+				Random r = new Random();
+				if (inputField.getText()!=(null) && inputField.getText().length()>0){
+					if (inputField.getText().charAt(0) == chQuestion) {
+						x1 += 10;
+						label1.setBounds(x1, 0, 100, 100);
+						count++;
+						chQuestion = (char) (97 + r.nextInt(25));
+						charTextField.setText(chQuestion + "");	
+					}
+				inputField.setText("");
+				}
+
 			}
 
 		}
+
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.race();
-	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		
+		new userThread().run(97 + r.nextInt(25));
 
 	}
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-
-		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			input = inputField.getText();
-			inputField.setText("");
-
-		}
-
-	}
 }

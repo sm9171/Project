@@ -1,5 +1,5 @@
 package client; 
- 
+ //확인
  
  import java.awt.EventQueue; 
  import java.util.Random; 
@@ -19,8 +19,8 @@ package client;
  	private JLabel background, label1, label2, label3, label4; // 플레이어1~4 
  	private int x1 = 100, x2 = 100, x3 = 100, x4 = 100; 
  	private JLabel textArea, textArea2; 
- 	private JTextField textField;
- 	double second = 0; 
+ 	private JTextField textField; 
+ 	double second = 0;
  
  	private JLabel label,ok,no; 
  	private JTextField selected; 
@@ -49,9 +49,13 @@ package client;
  				label3.setBounds(x3, 100, 100, 100); 
  				x4 += (int) (Math.random() * 10); 
  				label4.setBounds(x4, 150, 100, 100); 
- 
- 				if (x1 >= endLine || x2 >= endLine || x3 >= endLine || x4 >= endLine) { 
- 					JOptionPane.showMessageDialog(panel, "게임 종료."); 
+ 				if (x2 >= endLine||x3 >= endLine||x4 >= endLine) { 
+ 					JOptionPane.showMessageDialog(panel, "탈락!");
+ 					second=0;
+ 					break; 
+ 				} 
+ 				if (x1 >= endLine) { 
+ 					JOptionPane.showMessageDialog(panel, "게임 종료.  "+second+"초 걸림"); 
  					break; 
  
  				} 
@@ -152,7 +156,7 @@ package client;
  				if (a != null) { 
  					if (right == a.charAt(0)) {
  						
- 						x1 += 30; 
+ 						x1 += 7; 
  						textArea.setText("한칸 앞으로 이동!"); 
  						label1.setBounds(x1, 0, 100, 100); 
  						right = (char)(b.nextInt(25)+97);

@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.*;
 
 import game.NonsenseQuiz;
-
+//¤¾
 public class ServerStart {
 
 	private ServerSocket server;

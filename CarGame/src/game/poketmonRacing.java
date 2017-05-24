@@ -37,6 +37,7 @@ public class poketmonRacing implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					poketmonRacing window = new poketmonRacing();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
@@ -75,7 +76,7 @@ public class poketmonRacing implements ActionListener {
 		JButton btnStart = new JButton("Start!");
 		btnStart.setBounds(489, 287, 129, 36);
 		frame.getContentPane().add(btnStart);
-		
+
 		btnStart.addActionListener(this);
 
 		inputField = new JTextField();
@@ -97,25 +98,21 @@ public class poketmonRacing implements ActionListener {
 	}
 
 	class userThread extends Thread implements KeyListener {
-
+		
 		public void run(int j) {
-			
-			chQuestion = (char)j;
+
+			chQuestion = (char) j;
 			charTextField.setText(chQuestion + "");
 			int i = 0;
-
-			while (i < 10) {
-				inputField.addKeyListener(this);
-				System.out.println(i);
-				if (count == 10) {
-					charTextField.setText("³¡±îÁö µµÂøÇÏ¼Ì½À´Ï´Ù.");
-					break;
-				}
-					
-
-				i++;
-
+			
+			
+			System.out.println(i);
+			if (count == 10) {
+				charTextField.setText("³¡±îÁö µµÂøÇÏ¼Ì½À´Ï´Ù.");
 			}
+
+			i++;
+
 		}
 
 		@Override
@@ -132,20 +129,26 @@ public class poketmonRacing implements ActionListener {
 
 		@Override
 		public void keyReleased(KeyEvent e) {
-
-			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-				Random r = new Random();
-				if (inputField.getText()!=(null) && inputField.getText().length()>0){
-					if (inputField.getText().charAt(0) == chQuestion) {
-						x1 += 10;
-						label1.setBounds(x1, 0, 100, 100);
-						count++;
-						chQuestion = (char) (97 + r.nextInt(25));
-						charTextField.setText(chQuestion + "");	
+			try {
+				wait();
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					notify();
+					Random r = new Random();
+					if (inputField.getText() != (null) && inputField.getText().length() > 0) {
+						if (inputField.getText().charAt(0) == chQuestion) {
+							x1 += 10;
+							label1.setBounds(x1, 0, 100, 100);
+							count++;
+							chQuestion = (char) (97 + r.nextInt(25));
+							charTextField.setText(chQuestion + "");
+						}
+						inputField.setText("");
 					}
-				inputField.setText("");
-				}
 
+				}
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 
 		}
@@ -153,7 +156,7 @@ public class poketmonRacing implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		
+
 		new userThread().run(97 + r.nextInt(25));
 
 	}

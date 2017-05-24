@@ -19,7 +19,7 @@ package client;
  	private JLabel background, label1, label2, label3, label4; // 플레이어1~4 
  	private int x1 = 100, x2 = 100, x3 = 100, x4 = 100; 
  	private JLabel textArea, textArea2; 
- 	private JTextField textField; 
+ 	private JTextField textField;
  	double second = 0; 
  
  	private JLabel label,ok,no; 
